@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: omnissiah_postgres
+    environment:
+      POSTGRES_USER: omnissiah
+      POSTGRES_PASSWORD: omnissiah
+      POSTGRES_DB: omnissiah
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U omnissiah -d omnissiah"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - omnissiah_network
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omnissiah_fastapi
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://omnissiah:omnissiah@postgres:5432/omnissiah
+      FASTAPI_ENV: development
+      FASTAPI_DEBUG: "true"
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - omnissiah_network
+
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: omnissiah_react
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: http://fastapi:8000
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - fastapi
+    networks:
+      - omnissiah_network
+
+volumes:
+  postgres_data:
+
+networks:
+  omnissiah_network:
+    driver: bridge

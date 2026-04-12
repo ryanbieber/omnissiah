@@ -1,0 +1,131 @@
+{
+  "cars": [
+    {
+      "name": "Ford Fiesta 2016 ST",
+      "make": "Ford",
+      "model": "Fiesta",
+      "year": 2016,
+      "current_miles": 84000,
+      "maintenance_schedule": [
+        {
+          "name": "Oil Change",
+          "description": "Engine oil and filter replacement",
+          "interval_miles": 5000,
+          "interval_days": 365,
+          "estimated_cost": 50.0,
+          "notes": "Synthetic oil recommended"
+        },
+        {
+          "name": "Tire Rotation",
+          "description": "Rotate tires for even wear",
+          "interval_miles": 7500,
+          "estimated_cost": 30.0,
+          "notes": ""
+        },
+        {
+          "name": "Air Filter Replacement",
+          "description": "Replace engine air filter",
+          "interval_miles": 15000,
+          "estimated_cost": 25.0,
+          "notes": ""
+        },
+        {
+          "name": "Cabin Air Filter",
+          "description": "Replace cabin air filter",
+          "interval_miles": 15000,
+          "estimated_cost": 30.0,
+          "notes": ""
+        },
+        {
+          "name": "Brake Inspection",
+          "description": "Inspect brake pads and rotors",
+          "interval_miles": 10000,
+          "estimated_cost": 0.0,
+          "notes": "Free inspection"
+        },
+        {
+          "name": "Spark Plugs",
+          "description": "Replace spark plugs",
+          "interval_miles": 30000,
+          "estimated_cost": 100.0,
+          "notes": ""
+        },
+        {
+          "name": "Transmission Fluid",
+          "description": "Check/replace transmission fluid",
+          "interval_miles": 40000,
+          "estimated_cost": 150.0,
+          "notes": ""
+        },
+        {
+          "name": "Coolant Flush",
+          "description": "Flush and replace coolant",
+          "interval_miles": 30000,
+          "interval_days": 730,
+          "estimated_cost": 120.0,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "name": "Honda Odyssey 2021",
+      "make": "Honda",
+      "model": "Odyssey",
+      "year": 2021,
+      "current_miles": 65000,
+      "maintenance_schedule": [
+        {
+          "name": "Oil Change",
+          "description": "Engine oil and filter replacement",
+          "interval_miles": 7500,
+          "interval_days": 365,
+          "estimated_cost": 60.0,
+          "notes": "Synthetic oil (0W-20)"
+        },
+        {
+          "name": "Tire Rotation",
+          "description": "Rotate tires for even wear",
+          "interval_miles": 7500,
+          "estimated_cost": 40.0,
+          "notes": ""
+        },
+        {
+          "name": "Air Filter Replacement",
+          "description": "Replace engine air filter",
+          "interval_miles": 15000,
+          "estimated_cost": 30.0,
+          "notes": ""
+        },
+        {
+          "name": "Cabin Air Filter",
+          "description": "Replace cabin air filter",
+          "interval_miles": 15000,
+          "estimated_cost": 40.0,
+          "notes": ""
+        },
+        {
+          "name": "Transmission Fluid",
+          "description": "Check/replace transmission fluid",
+          "interval_miles": 30000,
+          "estimated_cost": 100.0,
+          "notes": "Honda recommends every 30k or 3 years"
+        },
+        {
+          "name": "Coolant Check",
+          "description": "Inspect coolant level and condition",
+          "interval_miles": 15000,
+          "estimated_cost": 0.0,
+          "notes": "Free with service"
+        },
+        {
+          "name": "Brake Fluid",
+          "description": "Check and replace brake fluid",
+          "interval_miles": 30000,
+          "interval_days": 730,
+          "estimated_cost": 80.0,
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

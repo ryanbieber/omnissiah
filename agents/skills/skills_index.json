@@ -1,0 +1,82 @@
+{
+  "lawncare": {
+    "count": 1,
+    "skills": [
+      {
+        "name": "lawncare",
+        "description": "Expert lawn care guidance for Iowa/Waverly region. Provides seasonal fertilization  schedules, aeration timing, seeding strategies, and pest management using regional  climate data. Integrates with weather APIs to make smart irrigation decisions.\n",
+        "version": "1.0.0",
+        "tools": [
+          "weather_check",
+          "fertilizer_calculator",
+          "watering_decision"
+        ],
+        "scripts": [
+          "fertilizer_calculator",
+          "watering_decision",
+          "weather_check"
+        ],
+        "templates": [
+          "seasonal-checklist.md"
+        ],
+        "references": [
+          "seeding-guide",
+          "fertilizer-schedule"
+        ],
+        "tags": [],
+        "region": "Iowa (Waverly area)",
+        "zone": "USDA 4b"
+      }
+    ]
+  },
+  "car_maintenance": {
+    "count": 1,
+    "skills": [
+      {
+        "name": "car_maintenance",
+        "description": "Professional-grade vehicle maintenance scheduling and execution across all vehicle systems. Covers oil changes, air filters, tire maintenance, battery service, brake maintenance, fluid checks, and preventive inspections for optimal vehicle health and safety.",
+        "version": "1.0.0",
+        "tools": [
+          "mileage_tracker",
+          "maintenance_scheduler",
+          "service_interval_calculator"
+        ],
+        "scripts": [],
+        "templates": [],
+        "references": [],
+        "tags": [
+          "vehicles",
+          "scheduled maintenance",
+          "safety critical"
+        ],
+        "region": "Global",
+        "zone": "Universal (all climates)"
+      }
+    ]
+  },
+  "house_maintenance": {
+    "count": 1,
+    "skills": [
+      {
+        "name": "house_maintenance",
+        "description": "Comprehensive home maintenance covering HVAC, plumbing, electrical, structural, and appliance systems. Provides seasonal maintenance schedules, preventive care procedures, cost estimates, and safety guidelines for optimal home health and longevity.",
+        "version": "1.0.0",
+        "tools": [
+          "maintenance_scheduler",
+          "seasonal_checklist_generator",
+          "cost_estimator"
+        ],
+        "scripts": [],
+        "templates": [],
+        "references": [],
+        "tags": [
+          "home systems",
+          "scheduled maintenance",
+          "safety critical"
+        ],
+        "region": "Global",
+        "zone": "Universal (all climates)"
+      }
+    ]
+  }
+}

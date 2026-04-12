@@ -1,0 +1,56 @@
+# Seasonal Lawn Care Checklist - {{SEASON}}
+
+**Date Started:** {{DATE}}  
+**Lawn Size:** {{LAWN_SIZE_SQFT}} sq ft  
+**Soil Type:** {{SOIL_TYPE}}  
+**Grass Type:** {{GRASS_TYPE}}
+
+## Pre-Work Assessment
+
+- [ ] Check weather forecast for next 7 days
+- [ ] Inspect lawn for existing damage, weeds, bare spots
+- [ ] Test soil pH (optimal: 6.0-7.0) 
+- [ ] Assess soil moisture (squeeze test)
+- [ ] Check equipment condition (mower, spreader, etc.)
+
+## {{SEASON}} Maintenance Tasks
+
+### Week 1-2
+- [ ] Task 1: {{TASK_1}}
+- [ ] Task 2: {{TASK_2}}
+- [ ] Watering schedule: {{WATERING_FREQ}}
+
+### Week 3-4
+- [ ] Task 3: {{TASK_3}}
+- [ ] Fertilizer application: {{FERTILIZER_TYPE}}
+- [ ] Mowing: {{MOWING_HEIGHT}} inches
+
+### Week 5+
+- [ ] Follow-up inspections
+- [ ] Adjust watering based on conditions
+- [ ] Monitor for pests/disease
+
+## Weather Monitoring
+
+| Date | Temp (High/Low) | Rain | Action Taken | Notes |
+|------|---|---|---|---|
+| | | | | |
+| | | | | |
+| | | | | |
+
+## Applications Log
+
+| Date | Product | Rate | Reason | Results |
+|------|---------|------|--------|---------|
+| | | | | |
+| | | | | |
+
+## Next Steps
+
+- [ ] Scheduled for {{NEXT_TASK}}: {{NEXT_DATE}}
+- [ ] Monitor for {{WATCH_FOR}}
+- [ ] Prepare for {{UPCOMING_SEASON}} by {{PREP_DATE}}
+
+## Notes
+
+{{ADDITIONAL_NOTES}}
