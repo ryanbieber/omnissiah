@@ -1,15 +1,15 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15-alpine
     container_name: omnissiah_postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: omnissiah
       POSTGRES_PASSWORD: omnissiah
       POSTGRES_DB: omnissiah
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -17,14 +17,20 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 10s
     networks:
       - omnissiah_network
+    labels:
+      com.example.description: "PostgreSQL Database for Omnissiah"
 
   fastapi:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.11"
     container_name: omnissiah_fastapi
+    restart: unless-stopped
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - "8000:8000"
@@ -34,21 +40,27 @@ services:
       FASTAPI_DEBUG: "true"
     volumes:
       - .:/app
+      - /app/.venv
     depends_on:
       postgres:
         condition: service_healthy
     networks:
       - omnissiah_network
+    labels:
+      com.example.description: "FastAPI Backend for Omnissiah"
 
   react:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        NODE_VERSION: "18"
     container_name: omnissiah_react
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
-      REACT_APP_API_URL: http://fastapi:8000
+      REACT_APP_API_URL: http://localhost:8000
       NODE_ENV: development
     volumes:
       - ./frontend:/app
@@ -57,10 +69,16 @@ services:
       - fastapi
     networks:
       - omnissiah_network
+    labels:
+      com.example.description: "React Frontend for Omnissiah"
 
 volumes:
   postgres_data:
+    driver: local
 
 networks:
   omnissiah_network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

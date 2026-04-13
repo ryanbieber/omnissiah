@@ -36,14 +36,14 @@ up:
 # Stop services (preserve data)
 down:
 	@echo "🛑 Stopping Omnissiah..."
-	docker-compose down
+	docker compose down
 	@echo "✅ Services stopped (data preserved)"
 
 # Stop services and wipe database
 down-v:
 	@echo "⚠️  WARNING: This will delete all data!"
 	@echo "🛑 Stopping services and removing volumes..."
-	docker-compose down -v
+	docker compose down -v
 	@echo "✅ Services stopped and database wiped"
 
 # Restart services
@@ -52,38 +52,38 @@ restart: down up
 # Build Docker images
 build:
 	@echo "🏗️  Building Docker images..."
-	docker-compose build
+	docker compose build
 	@echo "✅ Build complete"
 
 # Show running containers
 ps:
 	@echo "📦 Running Containers:"
-	@docker-compose ps
+	@docker compose ps
 
 # View all logs
 logs:
-	@docker-compose logs -f --timestamps
+	@docker compose logs -f --timestamps
 
 # View logs without timestamps
 logs-fast:
-	@docker-compose logs -f
+	@docker compose logs -f
 
 # View FastAPI logs
 logs-api:
-	@docker-compose logs -f fastapi
+	@docker compose logs -f fastapi
 
 # View PostgreSQL logs
 logs-postgres:
-	@docker-compose logs -f postgres
+	@docker compose logs -f postgres
 
 # View React logs
 logs-react:
-	@docker-compose logs -f react
+	@docker compose logs -f react
 
 # Clean up
 clean:
 	@echo "🧹 Cleaning up..."
-	docker-compose down -v
+	docker compose down -v
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
 	find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null || true
 	@echo "✅ Cleanup complete"
@@ -91,12 +91,12 @@ clean:
 # Open PostgreSQL shell
 db-shell:
 	@echo "🗄️  Connecting to PostgreSQL..."
-	docker-compose exec postgres psql -U omnissiah -d omnissiah
+	docker compose exec postgres psql -U omnissiah -d omnissiah
 
 # Open FastAPI container shell
 api-shell:
 	@echo "🔧 Connecting to FastAPI container..."
-	docker-compose exec fastapi /bin/bash
+	docker compose exec fastapi /bin/bash
 
 # Health check
 health:
@@ -106,7 +106,7 @@ health:
 	@curl -s http://localhost:8000/health || echo "❌ Not responding"
 	@echo ""
 	@echo "PostgreSQL:"
-	@docker-compose exec postgres pg_isready -U omnissiah -d omnissiah || echo "❌ Not responding"
+	@docker compose exec postgres pg_isready -U omnissiah -d omnissiah || echo "❌ Not responding"
 	@echo ""
 
 # Status summary
@@ -115,11 +115,11 @@ status: ps health
 # Development mode (rebuild and restart)
 dev:
 	@echo "🔄 Rebuilding and restarting in development mode..."
-	docker-compose up -d --build
+	docker compose up -d --build
 	@echo "✅ Development environment ready"
 
 # Production build
 prod:
 	@echo "📦 Building for production..."
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml build
 	@echo "✅ Production build complete"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { tasksAPI } from '../api/client';
 import '../styles/Pages.css';
 
@@ -7,11 +7,7 @@ function Tasks() {
   const [filter, setFilter] = useState('pending');
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadTasks();
-  }, [filter]);
-
-  const loadTasks = async () => {
+  const loadTasks = useCallback(async () => {
     try {
       setLoading(true);
       const response = await tasksAPI.list(filter === 'all' ? null : filter);
@@ -21,7 +17,11 @@ function Tasks() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    loadTasks();
+  }, [filter, loadTasks]);
 
   const handleStatusChange = async (taskId, newStatus) => {
     try {

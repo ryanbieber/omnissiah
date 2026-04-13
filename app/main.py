@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import asyncio
 import logging
+import time
 from config.settings import get_settings
 from database.database import engine, Base
 from app.routes import maintenance, cars, tasks, budgets, agent
@@ -11,8 +12,25 @@ from app.telegram import bot
 
 logger = logging.getLogger(__name__)
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Create database tables with retry logic
+def init_db_with_retry(max_retries=10, initial_delay=1):
+    """Initialize database tables with exponential backoff retry"""
+    for attempt in range(max_retries):
+        try:
+            logger.info(f"Attempting database initialization (attempt {attempt + 1}/{max_retries})")
+            Base.metadata.create_all(bind=engine)
+            logger.info("✅ Database tables created successfully")
+            return
+        except Exception as e:
+            if attempt < max_retries - 1:
+                delay = initial_delay * (2 ** attempt)  # Exponential backoff
+                logger.warning(f"Database connection failed: {e}. Retrying in {delay}s...")
+                time.sleep(delay)
+            else:
+                logger.error(f"Failed to initialize database after {max_retries} attempts")
+                raise
+
+init_db_with_retry()
 
 settings = get_settings()
 

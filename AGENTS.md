@@ -1,5 +1,11 @@
 # Omnissiah - Agent Architecture & Design
 
+
+## CODE STANDARDS
+When working on thsi code base do not use a try except, I want to fail hard if things break. This will allow for faster iterations and for
+solving shitty problems you make.
+
+
 ## Overview
 
 Omnissiah is a multi-agent home maintenance management system designed to coordinate maintenance scheduling, budget optimization, and user notifications across house, car, and lawn maintenance domains.

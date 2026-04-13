@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { agentAPI } from '../api/client';
 import '../styles/Pages.css';
 
@@ -7,14 +7,7 @@ function Admin() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
 
-  useEffect(() => {
-    loadExecutions();
-    // Refresh every 10 seconds
-    const interval = setInterval(loadExecutions, 10000);
-    return () => clearInterval(interval);
-  }, [filter]);
-
-  const loadExecutions = async () => {
+  const loadExecutions = useCallback(async () => {
     try {
       setLoading(true);
       const status = filter === 'all' ? null : filter;
@@ -25,7 +18,14 @@ function Admin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    loadExecutions();
+    // Refresh every 10 seconds
+    const interval = setInterval(loadExecutions, 10000);
+    return () => clearInterval(interval);
+  }, [filter, loadExecutions]);
 
   if (loading) return <div className="page loading">Loading...</div>;
 

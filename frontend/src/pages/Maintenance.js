@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { maintenanceAPI } from '../api/client';
 import '../styles/Pages.css';
 
@@ -16,11 +16,7 @@ function Maintenance() {
     notes: '',
   });
 
-  useEffect(() => {
-    loadItems();
-  }, [filter]);
-
-  const loadItems = async () => {
+  const loadItems = useCallback(async () => {
     try {
       setLoading(true);
       const type = filter === 'all' ? null : filter;
@@ -31,7 +27,11 @@ function Maintenance() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    loadItems();
+  }, [filter, loadItems]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { maintenanceAPI, tasksAPI, budgetsAPI, carsAPI } from '../api/client';
+import { tasksAPI, budgetsAPI, carsAPI } from '../api/client';
 import '../styles/Dashboard.css';
 
 function Dashboard() {
